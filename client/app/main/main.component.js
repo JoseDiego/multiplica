@@ -5,11 +5,12 @@ import routing from './main.routes';
 export class MainController {
 
   drivers = [];
-  newThing = '';
-
+  newDriver = '';
+  Driver;
   /*@ngInject*/
-  constructor($http) {
-    this.$http = $http;
+  constructor(Driver) {
+    this.Driver = Driver;
+    //this.$http = $http;
   }
 
   $onInit() {
@@ -17,26 +18,28 @@ export class MainController {
   }
 
   fetchData() {
-    this.$http.get('/api/drivers')
-      .then(response => {
-        this.drivers = response.data;
-      });
+    this.Driver.all()
+    .then(response => {
+      this.drivers = response.data;
+    });
   }
 
   saveDriver() {
-    if(this.newThing) {
-      this.$http.post('/api/drivers', {
-        name: this.newThing
-      });
-      this.newThing = '';
+    if(this.newDriver) {
+      this.Driver.save(this.newDriver);
+      this.newDriver = '';
     }
   }
 
-  deleteDriver(thing) {
-    this.$http.delete(`/api/drivers/${thing._id}`)
-    .then(() => {
+  fullAdress (driver) {
+    return `${driver.department},${driver.province} ${driver.district} `
+  }
+
+  deleteDriver(driver) {
+    this.Driver.delete(driver)
+    .then(() =>{
       this.fetchData();
-    });
+    })
   }
 }
 

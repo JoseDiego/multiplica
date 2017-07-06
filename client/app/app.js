@@ -20,10 +20,24 @@ import main from './main/main.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 
+import DriverFactory from './services/driver/driver.service'
+
 import './app.scss';
 
-angular.module('multiplicaApp', [ngCookies, ngResource, ngSanitize, cloudinary, uiRouter, uiBootstrap, navbar,
-  footer, main, constants, util
+angular.module('multiplicaApp',
+  [
+    ngCookies,
+    ngResource,
+    ngSanitize,
+    cloudinary,
+    uiRouter,
+    uiBootstrap,
+    navbar,
+    footer,
+    main,
+    constants,
+    util,
+    DriverFactory
 ])
   .config(routeConfig);
 

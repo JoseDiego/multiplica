@@ -4,5 +4,22 @@ $colors: (
   black: #1f1f1f,
   red-title: #b4211c,
   gray: #f4f4f4,
-  gray-border: #dbdbdb
-)
+  gray-border: #dbdbdb,
+  gray-buttom: #bbb9ba
+);
+
+.bold{
+  font-weight: bold;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+.no-margin{
+  margin: 0 !important;
+}
+
+.center {
+  text-align: center;
+}

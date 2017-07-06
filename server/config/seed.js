@@ -13,7 +13,7 @@ export default function seedDatabaseIfNeeded() {
     Driver.find({}).remove()
     .then(() => {
       let driver = Driver.create({
-        names: 'Jose Diego',
+        names: 'Jose Diego Diaz Cardenas',
         email: 'cardenas.josediego@gmail.com',
         phone: '965120773',
         department: 'Lima',

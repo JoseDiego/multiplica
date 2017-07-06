@@ -4,31 +4,47 @@
       <h5 class="page-header">Conductor/Vehiculo</h5>
       <div class="list-group">
         <div class="list-group-item empty-list" ng-if="$ctrl.drivers.length === 0">
-          a la verga
-          <button class="btn btn-default pull-right add-buttom"><i class="fa fa-plus"></i> Agregar</button>
+          <div class="row center">
+            <div class="col-xs-12">
+              <p>No hay ningun conductor/vehiculo registrado</p>
+            </div>
+            <div class="col-xs-12">
+              <button class="btn btn-default uppercase add-buttom"><i class="fa fa-plus"></i> Agregar</button>
+            </div>
+          </div>
         </div>
         <div class="list-group-item" ng-repeat="driver in $ctrl.drivers">
           <div class="row">
             <div class="col-md-3 info">
-              {{ $index + 1 }}
-              {{ driver.names }}
+              <div class="row">
+                <div class="col-xs-3 bold">{{ $index + 1 }}</div>
+                <div class="col-xs-9 bold uppercase">{{ driver.names }}</div>
+              </div>
             </div>
             <div class="col-md-3 info">
-              {{ driver._id }}
+              <div class="row">
+                <div class="col-xs-7 bold prefix-ball">Teléfono</div>
+                <div class="col-xs-5">{{ driver.phone }}</div>
+                <div class="col-xs-7 bold prefix-ball">Dosaje Etilico</div>
+                <div class="col-xs-5">{{ driver.status ? driver.status : '--' }}</div>
+              </div>
             </div>
-            <div class="col-md-3 info">
-              {{ driver._id }}
+            <div class="col-md-3 info last-child">
+              <div class="row">
+                <div class="col-xs-7 bold prefix-ball">Direccion</div>
+                <div class="col-xs-5 ">{{ $ctrl.fullAdress(driver) }}</div>
+              </div>
             </div>
             <div class="col-md-3 options">
-              <ul class="pull-right list-inline">
-                <li><a class="option"><i class="fa fa-pencil-square-o"></i></a></li>
-                <li><a class="option" ng-click="$ctrl.deleteDriver(driver)"><i class="fa fa-trash-o"></i></a></li>
+              <ul class="pull-right list-inline no-margin">
+                <li class="option"><a><i class="fa fa-pencil-square-o"></i></a></li>
+                <li class="option"><a ng-click="$ctrl.deleteDriver(driver)"><i class="fa fa-trash-o"></i></a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <button ng-if="$ctrl.drivers.length > 0" class="btn btn-default pull-right add-buttom"><i class="fa fa-plus"></i> Agregar</button>
+      <button ng-if="$ctrl.drivers.length > 0" class="btn btn-default pull-right uppercase add-buttom"><i class="fa fa-plus"></i> Agregar</button>
     </div>
   </div>
 </div>

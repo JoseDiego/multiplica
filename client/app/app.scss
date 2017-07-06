@@ -9,6 +9,9 @@ body{
   font-family: 'Noto Sans', sans-serif;
 }
 
+button:focus{
+  outline: 0 !important;
+}
 // @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,900|Roboto:300,500,700,900);
 
 /**
