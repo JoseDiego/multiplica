@@ -1,14 +1,14 @@
 /**
- * Thing model events
+ * Driver model events
  */
 
 'use strict';
 
 import {EventEmitter} from 'events';
-var ThingEvents = new EventEmitter();
+var DriverEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)
-ThingEvents.setMaxListeners(0);
+DriverEvents.setMaxListeners(0);
 
 // Model events
 var events = {
@@ -17,19 +17,19 @@ var events = {
 };
 
 // Register the event emitter to the model events
-function registerEvents(Thing) {
+function registerEvents(Driver) {
   for(var e in events) {
     let event = events[e];
-    Thing.post(e, emitEvent(event));
+    Driver.post(e, emitEvent(event));
   }
 }
 
 function emitEvent(event) {
   return function(doc) {
-    ThingEvents.emit(`${event}:${doc._id}`, doc);
-    ThingEvents.emit(event, doc);
+    DriverEvents.emit(`${event} : ${doc._id}`, doc);
+    DriverEvents.emit(event, doc);
   };
 }
 
 export {registerEvents};
-export default ThingEvents;
+export default DriverEvents;
