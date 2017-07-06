@@ -1,0 +1,11 @@
+.navbar-default.mapfre{
+  background: map-get($colors, red);
+  border-color: map-get($colors, red);
+  .navbar-brand{
+    color: map-get($colors, white);
+  }
+  .navbar-nav > .active > a{
+    background-color: map-get($colors, white);
+    color: map-get($colors, black)
+  }
+}

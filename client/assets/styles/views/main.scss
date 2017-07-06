@@ -1,0 +1,23 @@
+.page-header {
+  color: map-get($colors, red-title)
+}
+
+.list-group-item{
+  margin-top: 10px;
+  border-radius: 4px;
+  background: map-get($colors, gray);
+  border: 1px solid map-get($colors, gray-border);
+  .info {
+    border-right: 1px solid map-get($colors, gray-border);
+  }
+  &.empty-list{
+    color: red;
+  }
+}
+.options{
+  .option{
+    color: darken( map-get($colors, gray-border), 30%);
+    font-size: 18px;
+    cursor: pointer;
+  }
+}

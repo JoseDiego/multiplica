@@ -4,7 +4,7 @@ import routing from './main.routes';
 
 export class MainController {
 
-  awesomeThings = [];
+  drivers = [];
   newThing = '';
 
   /*@ngInject*/
@@ -13,23 +13,30 @@ export class MainController {
   }
 
   $onInit() {
-    this.$http.get('/api/things')
+    this.fetchData();
+  }
+
+  fetchData() {
+    this.$http.get('/api/drivers')
       .then(response => {
-        this.awesomeThings = response.data;
+        this.drivers = response.data;
       });
   }
 
-  addThing() {
+  saveDriver() {
     if(this.newThing) {
-      this.$http.post('/api/things', {
+      this.$http.post('/api/drivers', {
         name: this.newThing
       });
       this.newThing = '';
     }
   }
 
-  deleteThing(thing) {
-    this.$http.delete(`/api/things/${thing._id}`);
+  deleteDriver(thing) {
+    this.$http.delete(`/api/drivers/${thing._id}`)
+    .then(() => {
+      this.fetchData();
+    });
   }
 }
 

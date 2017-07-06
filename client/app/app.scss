@@ -3,6 +3,12 @@ $icon-font-path: '/assets/fonts/bootstrap/';
 $fa-font-path: '/assets/fonts/font-awesome/';
 @import '~font-awesome/scss/font-awesome';
 
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+body{
+  font-family: 'Noto Sans', sans-serif;
+}
+
 // @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,900|Roboto:300,500,700,900);
 
 /**
@@ -18,8 +24,12 @@ $fa-font-path: '/assets/fonts/font-awesome/';
 
 // Component styles are injected through gulp
 /* inject:scss */
-@import 'main/main';
-@import '../components/footer/footer';
-@import '../components/modal/modal';
-@import '../components/navbar/navbar';
+@import '../assets/styles/base/variables';
+@import '../assets/styles/base/mixins';
+
+@import '../assets/styles/views/main';
+
+@import '../assets/styles/components/footer';
+@import '../assets/styles/components/modal';
+@import '../assets/styles/components/navbar';
 /* endinject */
