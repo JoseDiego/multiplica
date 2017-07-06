@@ -5,6 +5,7 @@ import angular from 'angular';
 import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
 import ngSanitize from 'angular-sanitize';
+import cloudinary from 'cloudinary-angular';
 
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
@@ -21,7 +22,7 @@ import util from '../components/util/util.module';
 
 import './app.scss';
 
-angular.module('multiplicaApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, navbar,
+angular.module('multiplicaApp', [ngCookies, ngResource, ngSanitize, cloudinary, uiRouter, uiBootstrap, navbar,
   footer, main, constants, util
 ])
   .config(routeConfig);

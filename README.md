@@ -10,7 +10,9 @@ Este proyecto fue generado usando (para mayor rapidez) [Angular Full-Stack Gener
 - [Gulp](http://gulpjs.com/) (`npm install --global gulp`)
 
 
-OJO: Usa [MongoDB](https://www.mongodb.com/) para la persistencia de datos, pero esta conexion se maneja en la nube, especificamente [MongoLab](https://mlab.com/)
+OJO: Usa [MongoDB](https://www.mongodb.com/) para la persistencia de datos, pero esta conexion se maneja en la nube, especificamente [MongoLab](https://mlab.com/).
+
+Ah, Tambien uso [Cloudinary](https://cloudinary.com/) para el almacen de las imagenes (cool verdad?).
 
 ### Instalacion
 
