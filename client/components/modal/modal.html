@@ -3,7 +3,7 @@
   <h4 ng-if="$ctrl.modal.title" ng-bind="$ctrl.modal.title" class="modal-title"></h4>
 </div>
 <div class="modal-body">
-  <div class="row">
+  <form class="row" id="form" method="post" enctype="multipart/form-data">
     <div class="col-xs-12">
       <uib-tabset active="activeJustified" justified="true">
         <uib-tab index="0"heading="DATOS DEL CONDUCTOR">
@@ -63,15 +63,24 @@
                 <div class="col-sm-4">
                   <div class="form-group">
                     <label>Adjuntar Foto</label>
-                    <div class="image-preview pointer">
+                    <div class="image-preview pointer" ng-click="$ctrl.openFilePicker()" v-if="!$ctrl.imageSrc">
                       <div class="image-preview__text">
                         <i class="fa fa-picture-o"></i>
                         <div>Agregar Foto</div>
+                        <input type="file" id="photo" name="file" class="file-uploader" file-input="$ctrl.file" on-change="$ctrl.uploadFile()"/>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-xs-12 col-offset-sm-8">
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label>Vista Previa</label>
+                    <div class="preview">
+                      <img ng-src="{{ $ctrl.imageSrc }}">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-12">
                   <div class="form-group">
                     <label>Daños del vehiculo</label>
                     <div class="list-group">
@@ -165,7 +174,7 @@
         </uib-tab>
       </uib-tabset>
     </div>
-  </div>
+  </form>
 </div>
 <div class="modal-footer">
   <button ng-click="$ctrl.handleClose()" type="button" class="btn btn-default uppercase bold" data-dismiss="modal">cancelar</button>

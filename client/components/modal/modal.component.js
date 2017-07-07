@@ -7,13 +7,43 @@ export class modalComponent {
   showForm;
   damages = [];
   damage = {};
+  endPoint = '';
+  fileReader = {};
+  $scope = {};
+  imageSrc = null;
+
   /*@ngInject*/
-  constructor() {
+  constructor(Image, fileReader, $scope) {
+    this.$scope = $scope;
+    this.Image = Image;
+    this.fileReader = fileReader;
   }
 
   $onInit(){
     this.modal = this.resolve.modalData;
-    this.damages = this.modal.driver.damages;
+    this.damages = this.modal.driver.damages || [];
+  }
+
+  openFilePicker () {
+    setTimeout(function() {
+        document.getElementById('photo').click()
+    }, 0);
+  }
+
+  uploadFile () {
+    // console.log('this.file', this.file)
+    this.fileReader.readAsDataUrl(this.file, this.$scope)
+    .then((result) => {
+      return result
+    })
+    .then((ib64) => {
+      this.imageSrc = ib64
+      console.log()
+      this.Image.upload(this.file)
+      // .then((response) => {
+        // console.log('response', response)
+      // })
+    })
   }
 
   handleSave () {
@@ -30,7 +60,8 @@ export class modalComponent {
 
   addDamage() {
     this.damage = {}
-    this.damage.id = this.damages.length === 0 ? 1 : this.damages[this.damages.length - 1].id + 1;
+    let id = this.damages.length === 0 ? 1 : this.damages[this.damages.length - 1].id + 1;
+    this.damage.id = id
     this.showForm = true;
   }
 

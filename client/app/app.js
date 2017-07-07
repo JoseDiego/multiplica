@@ -17,11 +17,15 @@ import footer from '../components/footer/footer.component';
 
 import modal from '../components/modal/modal.component';
 
+import fileInput from './directives/fileInput/fileInput.directive';
+
 import main from './main/main.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 
-import DriverFactory from './services/driver/driver.service'
+import DriverService from './services/driver/driver.service'
+import ImageService from './services/image/image.service'
+import fileReader from './services/fileReader/fileReader.service';
 
 import './app.scss';
 
@@ -33,13 +37,16 @@ angular.module('multiplicaApp',
     cloudinary,
     uiRouter,
     uiBootstrap,
+    fileInput,
+    fileReader,
     modal,
     navbar,
     footer,
     main,
     constants,
     util,
-    DriverFactory
+    DriverService,
+    ImageService,
 ])
   .config(routeConfig);
 

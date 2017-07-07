@@ -21,7 +21,7 @@ export default function seedDatabaseIfNeeded() {
         district: 'San Isidro',
         urlImageVehicle: 'http://res.cloudinary.com/dmthisot9/image/upload/sample.jpg',
         damages: [
-          { part: '1', zone: '1', level: 'leve', type: 'abolladura' }
+          { id: 1, part: '1', zone: '1', level: 'leve', type: 'abolladura' }
         ]
       });
       return driver;
