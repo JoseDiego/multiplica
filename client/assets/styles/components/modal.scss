@@ -129,3 +129,6 @@
   border-radius: 0;
   padding: 6px;
 }
+.ng-invalid.ng-touched{
+  border-color: map-get($colors, red)
+}
