@@ -1,5 +1,9 @@
 .page-header {
-  color: map-get($colors, red-title)
+  color: map-get($colors, red-title);
+
+  .loading-message{
+    color: map-get($colors, green-button);
+  }
 }
 
 .list-group-item{

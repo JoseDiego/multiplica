@@ -8,6 +8,7 @@ export class MainController {
   newDriver = {};
   Driver;
   $uibModal;
+  loading = true;
   /*@ngInject*/
   constructor(Driver, $uibModal) {
     this.Driver = Driver;
@@ -26,17 +27,16 @@ export class MainController {
     this.Driver.all()
     .then(response => {
       this.drivers = response.data;
+      this.loading = false
     });
   }
 
   addDriver() {
-    // let newShit = { names: 'shit', email: 'shit@shit.shit'}
-    // this.openModal(newShit)
     this.openModal(this.newDriver);
   }
 
   saveDriver(driver) {
-    console.log('driver._id', driver._id)
+    this.loading = true;
     if (driver._id) {
       this.Driver.update(driver)
       .then(() => this.fetchData());
@@ -50,6 +50,7 @@ export class MainController {
     this.openModal(driver);
   }
   deleteDriver(driver) {
+    this.loading = true;
     this.Driver.delete(driver)
     .then(() =>{
       this.fetchData();
@@ -57,21 +58,20 @@ export class MainController {
   }
 
   openModal (driver) {
-    let $ctrl = this;
+    let title = driver._id ? `Editar conductor - ${driver._id}` : 'Nuevo Conductor';
+
     this.$uibModal.open({
-      controller: function () {
-        return {
-          driver: driver,
-          ok: () => {
-            $ctrl.saveDriver(driver);
-          },
-          cancel: () => {
-            modal.dismiss('cancel');
+      component: 'modal',
+      resolve: {
+        modalData: () => {
+          return {
+            title: title,
+            driver: driver
           }
+        }
       }
-      },
-      controllerAs: '$ctrl',
-      templateUrl: 'modal.html',
+    }).result.then((result) =>{
+      this.saveDriver(result.driver)
     })
   }
 }

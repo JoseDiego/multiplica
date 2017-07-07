@@ -1,11 +1,90 @@
 <div class="modal-header">
-  <button ng-if="modal.dismissable" type="button" ng-click="$dismiss()" class="close">&times;</button>
-  <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
+  <button type="button" ng-click="$ctrl.handleClose()" class="close">&times;</button>
+  <h4 ng-if="$ctrl.modal.title" ng-bind="$ctrl.modal.title" class="modal-title"></h4>
 </div>
 <div class="modal-body">
-  <p ng-if="modal.text" ng-bind="modal.text"></p>
-  <div ng-if="modal.html" ng-bind-html="modal.html"></div>
+  <div class="row">
+    <div class="col-xs-12">
+      <uib-tabset active="activeJustified" justified="true">
+        <uib-tab index="0"heading="DATOS DEL CONDUCTOR">
+          <div clas="col-xs-12">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>Nombres: *</label>
+                    <input type="text" ng-model="$ctrl.modal.driver.names" required="true" class="form-control" autofocus>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>Email: *</label>
+                    <input type="email" ng-model="$ctrl.modal.driver.email" required="true" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>Telefono:</label>
+                    <input type="text" ng-model="$ctrl.modal.driver.phone" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>Departamento: *</label>
+                    <select ng-model="$ctrl.modal.driver.department" required="true" class="form-control">
+                      <option>Lima</option>
+                      <option>Trujillo</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>Provincia: *</label>
+                    <select ng-model="$ctrl.modal.driver.province" required="true" class="form-control">
+                      <option>Lima</option>
+                      <option>Trujillo</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>Distrito: *</label>
+                    <select ng-model="$ctrl.modal.driver.district" required="true" class="form-control">
+                      <option>Lince</option>
+                      <option>San Isidro</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </uib-tab>
+        <uib-tab index="1" heading="DATOS DEL VEHICULO">
+          <div clas="col-xs-12">
+            <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>Adjuntar Foto</label>
+                    <div class="image-preview pointer">
+                      <div class="image-preview__text">
+                        <i class="fa fa-picture-o"></i>
+                        <div>Agregar Foto</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-offset-sm-8">
+                  <div class="form-group">
+                    <label>Daños del vehiculo</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </uib-tab>
+      </uib-tabset>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
-  <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button>
+  <button ng-click="$ctrl.handleClose()" type="button" class="btn btn-default uppercase bold" data-dismiss="modal">cancelar</button>
+  <button ng-click="$ctrl.handleSave()"type="button" class="btn btn-success uppercase bold">guardar</button>
 </div>

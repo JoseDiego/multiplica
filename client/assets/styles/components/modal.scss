@@ -4,7 +4,7 @@
 .modal-warning,
 .modal-danger {
   .modal-header {
-    color: #fff;
+    color: map-get($colors, white);
     border-radius: 5px 5px 0 0;
   }
 }
@@ -73,7 +73,7 @@
 
 .tab-nav > li > a::after {
   background: #21527d none repeat scroll 0% 0%;
-  color: #fff;
+  color: map-get($colors, white);
 }
 
 .tab-pane {
@@ -100,7 +100,7 @@
 .image-preview {
   text-align: center;
   vertical-align: middle;
-  padding-top: 30%;
+  padding-top: 50px;
   width: 120px;
   height: 140px;
   border-radius: 4px;
