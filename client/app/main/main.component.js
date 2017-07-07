@@ -62,6 +62,7 @@ export class MainController {
 
     this.$uibModal.open({
       component: 'modal',
+      size: 'lg',
       resolve: {
         modalData: () => {
           return {

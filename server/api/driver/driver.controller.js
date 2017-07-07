@@ -27,9 +27,7 @@ function patchUpdates(patches) {
   return function(entity) {
     try {
       // eslint-disable-next-line prefer-reflect
-      console.log('entity', entity)
-      console.log('patches', patches)
-      jsonpatch.apply(entity, patches, /*validate*/ true);
+      jsonpatch.apply(entity, patches);
     } catch(err) {
       return Promise.reject(err);
     }

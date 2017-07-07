@@ -74,6 +74,89 @@
                 <div class="col-xs-12 col-offset-sm-8">
                   <div class="form-group">
                     <label>Daños del vehiculo</label>
+                    <div class="list-group">
+                      <div class="list-group-item empty-list" ng-if="!$ctrl.showForm && !$ctrl.modal.driver.damages || $ctrl.modal.driver.damages.length === 0">
+                        <div class="row center">
+                          <div class="col-xs-12">
+                            <p>No hay ningun daño registrado</p>
+                          </div>
+                          <div class="col-xs-12">
+                            <button ng-disabled="$ctrl.loading" ng-click="$ctrl.addDamage()" class="btn btn-default uppercase add-buttom"><i class="fa fa-plus"></i> Agregar</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="list-group-item" ng-repeat="damage in $ctrl.modal.driver.damages" ng-if="!$ctrl.showForm && $ctrl.modal.driver.damages">
+                        <div class="row">
+                          <div class="col-md-3 info">
+                            <div class="row">
+                              <div class="col-xs-12 bold">Zona</div>
+                              <div class="col-xs-12">{{ $ctrl.getStringZone(damage.zone) }}</div>
+                            </div>
+                          </div>
+                          <div class="col-md-3 info">
+                            <div class="row">
+                              <div class="col-xs-12 bold">Parte</div>
+                              <div class="col-xs-12">{{ $ctrl.getStringPart(damage.part) }}</div>
+                            </div>
+                          </div>
+                          <div class="col-md-3 info last-child">
+                            <div class="row">
+                              <div class="col-xs-8 bold">Nivel de Daño</div>
+                              <div class="col-xs-4 ">{{ damage.level }}</div>
+                              <div class="col-xs-8 bold">Tipo</div>
+                              <div class="col-xs-4 ">{{ damage.type }}</div>
+                            </div>
+                          </div>
+                          <div class="col-md-3 options">
+                            <ul class="pull-right list-inline no-margin">
+                              <li class="option"><a ng-click="$ctrl.editDamage(damage)"><i class="fa fa-pencil-square-o"></i></a></li>
+                              <li class="option"><a ng-click="$ctrl.deleteDamage(damage)"><i class="fa fa-trash-o"></i></a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="list-group-item new-damage" ng-if="$ctrl.showForm">
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                              <label>Zona del daño</label>
+                              <select ng-model="$ctrl.damage.zone" required="true" class="form-control">
+                                <option value="1">funda de parachoque posterior</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                              <label>Parte</label>
+                              <select ng-model="$ctrl.damage.part" required="true" class="form-control">
+                                <option value="1">parte baja delantera</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                              <label>Nivel de daño</label>
+                              <select ng-model="$ctrl.damage.level" required="true" class="form-control">
+                                <option>leve</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                              <label>Tipo de daño</label>
+                              <select ng-model="$ctrl.damage.type" required="true" class="form-control">
+                                <option>abolladura</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="pull-right">
+                            <button ng-click="$ctrl.hideForm()" type="button" class="btn btn-default uppercase bold" data-dismiss="modal">cancelar</button>
+                            <button ng-click="$ctrl.saveDamage()"type="button" class="btn btn-success uppercase bold">guardar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button ng-disabled="$ctrl.loading || $ctrl.showForm" ng-click="$ctrl.addDamage()" class="btn btn-default uppercase add-buttom pull-right"><i class="fa fa-plus"></i> Agregar</button>
                   </div>
                 </div>
               </div>
