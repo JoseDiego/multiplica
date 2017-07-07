@@ -12,7 +12,7 @@ export function DriverService($http) {
       return $http.post('/api/drivers', driver);
     },
     update (driver) {
-      return $http.post(`/api/drivers/${driver._id}`, driver);
+      return $http.patch(`/api/drivers/${driver._id}`, driver);
     },
     get (id) {
       return $http.get('/api/drivers');

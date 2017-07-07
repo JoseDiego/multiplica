@@ -4,17 +4,22 @@ import routing from './main.routes';
 
 export class MainController {
 
-  drivers = [];
-  newDriver = '';
+  drivers = null;
+  newDriver = {};
   Driver;
+  $uibModal;
   /*@ngInject*/
-  constructor(Driver) {
+  constructor(Driver, $uibModal) {
     this.Driver = Driver;
-    //this.$http = $http;
+    this.$uibModal = $uibModal
   }
 
   $onInit() {
     this.fetchData();
+  }
+
+  fullAdress (driver) {
+    return `${driver.department},${driver.province} ${driver.district} `
   }
 
   fetchData() {
@@ -24,21 +29,49 @@ export class MainController {
     });
   }
 
-  saveDriver() {
-    if(this.newDriver) {
-      this.Driver.save(this.newDriver);
-      this.newDriver = '';
+  addDriver() {
+    // let newShit = { names: 'shit', email: 'shit@shit.shit'}
+    // this.openModal(newShit)
+    this.openModal(this.newDriver);
+  }
+
+  saveDriver(driver) {
+    console.log('driver._id', driver._id)
+    if (driver._id) {
+      this.Driver.update(driver)
+      .then(() => this.fetchData());
+    } else {
+      this.Driver.save(driver)
+      .then(() => this.fetchData());
     }
   }
 
-  fullAdress (driver) {
-    return `${driver.department},${driver.province} ${driver.district} `
+  editDriver (driver) {
+    this.openModal(driver);
   }
-
   deleteDriver(driver) {
     this.Driver.delete(driver)
     .then(() =>{
       this.fetchData();
+    })
+  }
+
+  openModal (driver) {
+    let $ctrl = this;
+    this.$uibModal.open({
+      controller: function () {
+        return {
+          driver: driver,
+          ok: () => {
+            $ctrl.saveDriver(driver);
+          },
+          cancel: () => {
+            modal.dismiss('cancel');
+          }
+      }
+      },
+      controllerAs: '$ctrl',
+      templateUrl: 'modal.html',
     })
   }
 }

@@ -10,12 +10,13 @@ import cloudinary from 'cloudinary-angular';
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
 
-import {
-  routeConfig
-} from './app.config';
+import { routeConfig } from './app.config';
 
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
+
+import modalController from './controllers/modal/modal.controller';
+
 import main from './main/main.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
@@ -32,6 +33,7 @@ angular.module('multiplicaApp',
     cloudinary,
     uiRouter,
     uiBootstrap,
+    modalController,
     navbar,
     footer,
     main,

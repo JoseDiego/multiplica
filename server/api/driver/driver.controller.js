@@ -27,7 +27,7 @@ function patchUpdates(patches) {
   return function(entity) {
     try {
       // eslint-disable-next-line prefer-reflect
-      jsonpatch.apply(entity, patches, /*validate*/ true);
+      jsonpatch.applyPatch(entity, patches, /*validate*/ true);
     } catch(err) {
       return Promise.reject(err);
     }
@@ -41,7 +41,7 @@ function removeEntity(res) {
     if(entity) {
       return entity.remove()
         .then(() => {
-          res.status(204).end();
+          return res.status(204).end();
         });
     }
   };
