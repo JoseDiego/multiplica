@@ -110,11 +110,33 @@
   }
 }
 .preview {
-  width: auto;
+  width: 210px;
   height: 140px;
+  position: relative;
   img {
+
     width: auto;
     height: 100% !important;
+  }
+  &:hover > .remove{
+    display: block;
+  }
+
+  .remove {
+    display: none;
+    background-color: rgba(map-get($colors, black), 0.2);
+    position: absolute;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    vertical-align: middle;
+    line-height: 140px;
+    .remove__text {
+      opacity: 1;
+    }
   }
 }
 .new-damage {

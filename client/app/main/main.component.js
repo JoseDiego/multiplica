@@ -9,6 +9,7 @@ export class MainController {
   Driver;
   $uibModal;
   loading = true;
+  alerts = [];
   /*@ngInject*/
   constructor(Driver, $uibModal) {
     this.Driver = Driver;
@@ -23,12 +24,22 @@ export class MainController {
     return `${driver.department},${driver.province} ${driver.district} `
   }
 
-  fetchData() {
+  fetchData(cb = null) {
     this.Driver.all()
     .then(response => {
       this.drivers = response.data;
       this.loading = false
-    });
+    })
+    .then(() => {
+      if(cb) {
+        cb();
+      }
+    })
+    ;
+  }
+
+  closeAlert (index) {
+    this.alerts.splice(index, 1);
   }
 
   addDriver() {
@@ -39,10 +50,20 @@ export class MainController {
     this.loading = true;
     if (driver._id) {
       this.Driver.update(driver)
-      .then(() => this.fetchData());
+      .then(() => this.fetchData(() => {
+        this.alerts.push({ type: 'success', msg: 'Datos guardados correctamente.' });
+        setTimeout(() => {
+          this.alerts = []
+        }, 1000);
+      }))
     } else {
       this.Driver.save(driver)
-      .then(() => this.fetchData());
+      .then(() => this.fetchData(() => {
+        this.alerts.push({ type: 'success', msg: 'Datos guardados correctamente.' });
+        setTimeout(() => {
+          this.alerts = []
+        }, 1000);
+      }))
     }
   }
 
@@ -59,7 +80,7 @@ export class MainController {
 
   openModal (driver) {
     let title = driver._id ? `Editar conductor - ${driver._id}` : 'Nuevo Conductor';
-
+    let copy = Object.assign({}, driver);
     this.$uibModal.open({
       component: 'modal',
       size: 'lg',
@@ -67,7 +88,7 @@ export class MainController {
         modalData: () => {
           return {
             title: title,
-            driver: driver
+            driver: copy
           }
         }
       }

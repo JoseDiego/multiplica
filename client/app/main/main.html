@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
+      <div uib-alert ng-repeat="alert in $ctrl.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="$ctrl.closeAlert($index)">{{alert.msg}}</div>
       <h5 class="page-header">Conductor/Vehiculo <span ng-if="$ctrl.loading" class="loading-message small pull-right"><i class="fa fa-refresh fa-spin fa-fw" aria-hidden="true"></i> Cargando espere un momento...</span></h5>
       <div class="list-group">
         <div class="list-group-item empty-list" ng-if="$ctrl.drivers !== null && $ctrl.drivers.length === 0">

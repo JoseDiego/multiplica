@@ -10,7 +10,7 @@ export class modalComponent {
   endPoint = '';
   fileReader = {};
   $scope = {};
-  imageSrc = null;
+  loadingImage = false;
 
   /*@ngInject*/
   constructor(Image, fileReader, $scope) {
@@ -31,20 +31,25 @@ export class modalComponent {
   }
 
   uploadFile () {
-    // console.log('this.file', this.file)
+    this.loadingImage = true
     this.fileReader.readAsDataUrl(this.file, this.$scope)
     .then((result) => {
       return result
     })
     .then((ib64) => {
-      this.imageSrc = ib64
-      console.log()
-      this.Image.upload(this.file)
-      // .then((response) => {
-        // console.log('response', response)
-      // })
+      let data = {
+        file: ib64,
+        upload_preset: 's3o78uxl'
+      }
+      this.Image.upload(data)
+      .then((response) => {
+        let urlImageVehicle = response.data.url.replace(`v${response.data.version}`, 'w_300,h_200,c_scale')
+        this.modal.driver.urlImageVehicle = urlImageVehicle
+        this.loadingImage = false
+      })
     })
   }
+
 
   handleSave () {
     this.modalInstance.close(this.modal);
